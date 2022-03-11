@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import queryString from 'query-string';
 
@@ -9,24 +9,24 @@ import { HeroCard } from '../hero/HeroCard';
 export const SearchScreen = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location.search)
+  // console.log(location.search)
 
   // const query = queryString.parse(location.search);
   // console.log(query)
-  const {q=''} = queryString.parse(location.search);
-  console.log('q= ',q);
+  const { q = '' } = queryString.parse(location.search);
+  // console.log('q= ', q);
 
   const [formValues, handleInputChange, reset] = useForm({
     searchText: q,
   });
   const { searchText } = formValues;
-  const heroesFiltered = getHeroesByName(q);
-  console.log(heroesFiltered);
+  const heroesFiltered = useMemo(()=>getHeroesByName(q),[q]) ;
+  // console.log(heroesFiltered);
 
 
   const handleSearch = (e) => {
     e.preventDefault();
-    console.log(searchText);
+    // console.log(searchText);
     navigate(`?q=${searchText}`);
   }
   return (
@@ -59,6 +59,16 @@ export const SearchScreen = () => {
         <div className='col-7'>
           <h4>Results</h4>
           <hr />
+          {
+            (q === '')
+              ? <div className='alert alert-info'>
+                Search for a hero
+              </div>
+              : (heroesFiltered.length === 0)
+              && <div className='alert alert-danger'>
+                There are no results: {q}
+              </div>
+          }
           {
             heroesFiltered.map(hero => (
               <HeroCard

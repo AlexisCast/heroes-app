@@ -5,7 +5,7 @@ export const LoginScreen = () => {
 	const navigate = useNavigate();
 
 	const handleLogin = () => {
-		console.log("handleclick");
+		// console.log("handleclick");//
 		navigate('/marvel', {
 			replace: true
 		});

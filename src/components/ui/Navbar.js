@@ -7,7 +7,7 @@ export const Navbar = () => {
 
 	const handleLogout = () => {
 
-		console.log("logout");
+		// console.log("logout");
 		navigate('/login', {
 			replace: true
 		});
