@@ -26,7 +26,7 @@ export const HeroesApp = () => {
 			user,
 			dispatch
 		}}>
-			<AppRouter />;
+			<AppRouter />
 		</AuthContext.Provider>
 	)
 };
