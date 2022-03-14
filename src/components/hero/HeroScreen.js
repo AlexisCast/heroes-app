@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { useParams, Navigate, useNavigate } from 'react-router-dom';
 import { getHeroById } from '../../selectors/getHeroById';
 
-
+import { heroImages } from '../../helpers/heroImages';
 
 export const HeroScreen = () => {
 
@@ -34,13 +34,12 @@ export const HeroScreen = () => {
     characters,
   } = hero;
 
-  const imagePath = `/assets/${hero.id}.jpg`;
 
   return (
     <div className='row mt-5'>
       <div className='col-4'>
         <img
-          src={imagePath}
+          src={heroImages(`./${heroeId}.jpg`)}
           alt={superhero}
           className='img-thumbnail animate__animated animate__bounceInLeft'
         />
@@ -60,7 +59,7 @@ export const HeroScreen = () => {
           className='btn btn-outline-info'
           onClick={handleReturn}
         >
-          Return 
+          Return
           {/* {counter} */}
         </button>
       </div>
