@@ -27,6 +27,7 @@ export const SearchScreen = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     // console.log(searchText);
+    localStorage.setItem('lastPath',location.pathname);
     navigate(`?q=${searchText}`);
   }
   return (
